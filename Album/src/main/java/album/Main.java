@@ -23,8 +23,8 @@ public class Main extends Application {
 
         // creation observateurs
 
-        DroiteInventairePhotos droiteinventairephotos = new DroiteInventairePhotos(album);
         Root root = new Root(album);
+        DroiteInventairePhotos droiteinventairephotos = new DroiteInventairePhotos(album);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Root.fxml"));
 

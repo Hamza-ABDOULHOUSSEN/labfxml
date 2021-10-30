@@ -26,8 +26,7 @@ public class SavePane implements Observateur {
 
     @FXML
     protected void CancelClick() {
-        StackPane root = (StackPane) savepane.getParent();
-        root.getChildren().remove(savepane);
+        album.cancel(savepane);
     }
 
     public SavePane(Album album) {

@@ -18,7 +18,7 @@ public class Root implements Observateur {
     Pane savepane;
 
     @FXML
-    private StackPane root;
+    public StackPane root;
 
     @FXML
     protected void QuitClick() {
@@ -30,8 +30,8 @@ public class Root implements Observateur {
         album.ajouterObservateur(this);
 
         //creation observateurs
-        AskImagePane askimagepane_controller = new AskImagePane(album);
         SavePane savepane_controller = new SavePane(album);
+        AskImagePane askimagepane_controller = new AskImagePane(album);
 
         FXMLLoader fxmlLoader_savepane = new FXMLLoader(Main.class.getResource("SavePane.fxml"));
 
