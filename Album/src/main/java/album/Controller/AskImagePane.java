@@ -26,6 +26,11 @@ public class AskImagePane implements Observateur {
 
     }
 
+    @FXML
+    protected void CancelClick() {
+        album.cancel(askimagepane);
+    }
+
     public AskImagePane(Album album) {
         this.album = album;
         album.ajouterObservateur(this);
