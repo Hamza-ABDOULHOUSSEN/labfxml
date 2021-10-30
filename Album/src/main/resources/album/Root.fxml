@@ -18,25 +18,30 @@
    <children>
       <VBox prefHeight="600.0" prefWidth="900.0">
          <children>
-          <MenuBar VBox.vgrow="NEVER">
-            <menus>
-              <Menu mnemonicParsing="false" text="Album">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Restore" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" onAction="#QuitClick"/>
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Outils">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Rename the album" />
-                </items>
-              </Menu>
-            </menus>
-          </MenuBar>
-          <SplitPane focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+              <MenuBar VBox.vgrow="NEVER">
+                <menus>
+                  <Menu mnemonicParsing="false" text="Album">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Save" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Restore" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Quit" onAction="#QuitClick"/>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Outils">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Rename the album" />
+                    </items>
+                  </Menu>
+                </menus>
+              </MenuBar>
+              <SplitPane dividerPositions="0.6414253897550112" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                 <items>
+                    <Pane prefHeight="200.0" prefWidth="562.0" />
+                    <fx:include fx:id="Droite_inventaire_photos" source="Droite_inventaire_photos.fxml" />
+                 </items>
+            </SplitPane>
          </children>
       </VBox>
    </children>
