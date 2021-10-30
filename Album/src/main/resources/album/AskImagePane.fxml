@@ -26,7 +26,7 @@
                      <Font size="14.0" />
                   </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="ex: &quot;/Cat/Cat_01.png&quot;" textAlignment="CENTER">
+                <Label alignment="CENTER" contentDisplay="CENTER" text="ex: &quot;/Cat/Cat_01.jpg&quot;" textAlignment="CENTER">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -34,7 +34,7 @@
                      <Insets bottom="5.0" />
                   </padding>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="Fichier non existant" textAlignment="CENTER" textFill="RED" fx:id="error_message">
+                <Label alignment="CENTER" contentDisplay="CENTER" text="" textAlignment="CENTER" textFill="RED" fx:id="error_message">
                    <font>
                       <Font size="14.0" />
                    </font>
