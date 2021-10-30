@@ -1,5 +1,7 @@
 package album.Controller;
 
+import album.Observateur.Observateur;
+import album.model.Album;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -7,7 +9,9 @@ import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 
-public class DroiteInventairePhotos {
+public class DroiteInventairePhotos implements Observateur {
+
+    Album album;
 
     // donnée models
     ArrayList<ImageView> liste_photos = new ArrayList<ImageView>();
@@ -34,7 +38,15 @@ public class DroiteInventairePhotos {
         }
 
         inventaire_photos.add(imageview, col, lig);
-        System.out.println(lig);
-        System.out.println(col);
+    }
+
+    public DroiteInventairePhotos(Album album) {
+        this.album = album;
+        album.ajouterObservateur(this);
+    }
+
+    @Override
+    public void update() {
+
     }
 }
