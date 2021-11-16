@@ -38,7 +38,7 @@
               </MenuBar>
               <SplitPane dividerPositions="0.6414253897550112" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
                  <items>
-                    <Pane prefHeight="200.0" prefWidth="562.0" />
+                    <fx:include fx:id="Gauche_double_pages" source="Gauche_double_pages.fxml" />
                     <fx:include fx:id="Droite_inventaire_photos" source="Droite_inventaire_photos.fxml" />
                  </items>
             </SplitPane>
