@@ -1,0 +1,1 @@
+java --module-path JavaFX/javafx-sdk-17.0.1/lib --add-modules javafx.base,javafx.controls,javafx.fxml -jar Album/out/artifacts/Album_jar/Album.jar
