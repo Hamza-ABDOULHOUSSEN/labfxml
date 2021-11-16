@@ -51,6 +51,9 @@ public class Root implements Observateur {
         this.askimagepane = (Pane) fxmlLoader_askimagepane.load();
     }
 
+    public void addAskimagepane() {
+        root.getChildren().add(askimagepane);
+    }
     @Override
     public void update() {
 
