@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="100.0" prefWidth="200.0">
+<HBox prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.Information">
  <children>
     <Label prefHeight="82.0" prefWidth="475.0" text="Nom de l'album :">
        <font>
