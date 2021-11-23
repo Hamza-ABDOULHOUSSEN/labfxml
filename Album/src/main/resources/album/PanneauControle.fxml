@@ -19,10 +19,10 @@
 
 <HBox prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.PanneauControle">
  <children>
-    <Button mnemonicParsing="false" text="precedent" />
-    <Button mnemonicParsing="false" text="suivant" />
-    <Button mnemonicParsing="false" text="ajouter" />
-    <Button mnemonicParsing="false" text="retirer" />
+    <Button mnemonicParsing="false" text="precedent" onAction="#precedentClick" />
+    <Button mnemonicParsing="false" text="suivant" onAction="#suivantClick" />
+    <Button mnemonicParsing="false" text="ajouter" onAction="#ajouterClick" />
+    <Button mnemonicParsing="false" text="retirer" onAction="#retirerClick" />
  </children>
 </HBox>
 

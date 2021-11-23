@@ -13,6 +13,23 @@ public class PanneauControle implements Observateur {
         album.ajouterObservateur(this);
     }
 
+    @FXML
+    protected void precedentClick() {
+    }
+
+    @FXML
+    protected void suivantClick() {
+    }
+
+    @FXML
+    protected void ajouterClick() {
+        album.ajouter_double_page();
+    }
+
+    @FXML
+    protected void retirerClick() {
+    }
+
     @Override
     public void update() {
 
