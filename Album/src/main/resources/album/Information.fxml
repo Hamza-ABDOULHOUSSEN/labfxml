@@ -19,12 +19,12 @@
 
 <HBox prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.Information">
  <children>
-    <Label prefHeight="82.0" prefWidth="475.0" text="Nom de l'album :">
+    <Label prefHeight="82.0" prefWidth="475.0" text="Nom de l'album :" fx:id="nom_album_label">
        <font>
           <Font size="16.0" />
        </font>
     </Label>
-    <Label prefHeight="57.0" prefWidth="289.0" text="page 1-2 sur 4">
+    <Label prefHeight="57.0" prefWidth="289.0" text="page 1-2 sur 2" fx:id="nb_page_label">
        <font>
           <Font size="15.0" />
        </font></Label>
