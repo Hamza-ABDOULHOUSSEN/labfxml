@@ -38,6 +38,27 @@ public class Album extends SujetObserve {
         notifierObservateurs();
     }
 
+    public void retirer_double_page() {
+        if (nb_double_page != 2) {
+            nb_double_page-=2;
+        }
+        notifierObservateurs();
+    }
+
+    public void precedent_double_page() {
+        if (double_page_courante != 1) {
+            double_page_courante-=2;
+        }
+        notifierObservateurs();
+    }
+
+    public void suivant_double_page() {
+        if (double_page_courante != nb_double_page - 1) {
+            double_page_courante+=2;
+        }
+        notifierObservateurs();
+    }
+
 
     // GETTERS
     public String getNom_album() {return this.nom_album;}

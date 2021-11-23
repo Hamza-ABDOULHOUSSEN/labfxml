@@ -15,10 +15,12 @@ public class PanneauControle implements Observateur {
 
     @FXML
     protected void precedentClick() {
+        album.precedent_double_page();
     }
 
     @FXML
     protected void suivantClick() {
+        album.suivant_double_page();
     }
 
     @FXML
@@ -28,6 +30,7 @@ public class PanneauControle implements Observateur {
 
     @FXML
     protected void retirerClick() {
+        album.retirer_double_page();
     }
 
     @Override
