@@ -19,9 +19,9 @@
 
 <SplitPane prefHeight="425.0" prefWidth="476.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.DoublePage">
     <items>
-        <VBox prefHeight="164.0" prefWidth="281.0">
+        <VBox prefHeight="164.0" prefWidth="281.0" fx:id="vbox1">
            <children>
-              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),        linear-gradient(#020b02, #3a3a3a),        linear-gradient(#b9b9b9 0%, #c2c2c2 20%, #afafaf 80%, #c8c8c8 100%),        linear-gradient(#f5f5f5 0%, #dbdbdb 50%, #cacaca 51%, #d7d7d7 100%); -fx-background-insets: 0,1,4,5; -fx-background-radius: 9,8,5,49,8,5,4; -fx-padding: 15 30 15 30; -fx-font-family: &quot;Helvetica&quot;; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333; -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" text="Titre1" fx:id="title1" onAction="#title1Click">
+              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),        linear-gradient(#020b02, #3a3a3a),        linear-gradient(#b9b9b9 0%, #c2c2c2 20%, #afafaf 80%, #c8c8c8 100%),        linear-gradient(#f5f5f5 0%, #dbdbdb 50%, #cacaca 51%, #d7d7d7 100%); -fx-background-insets: 0,1,4,5; -fx-background-radius: 9,8,5,49,8,5,4; -fx-padding: 15 30 15 30; -fx-font-family: &quot;Helvetica&quot;; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333; -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" text="titre" fx:id="title1" onAction="#title1Click">
                  <font>
                     <Font size="20.0" />
                  </font>
@@ -32,12 +32,12 @@
                     <Insets />
                  </VBox.margin>
               </Button>
-              <Pane prefHeight="366.0" prefWidth="295.0" />
+              <Pane prefHeight="366.0" prefWidth="295.0" fx:id="pane1" />
            </children>
         </VBox>
-        <VBox prefHeight="420.0" prefWidth="295.0">
+        <VBox prefHeight="420.0" prefWidth="295.0" fx:id="vbox2">
            <children>
-              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),        linear-gradient(#020b02, #3a3a3a),        linear-gradient(#b9b9b9 0%, #c2c2c2 20%, #afafaf 80%, #c8c8c8 100%),        linear-gradient(#f5f5f5 0%, #dbdbdb 50%, #cacaca 51%, #d7d7d7 100%); -fx-background-insets: 0,1,4,5; -fx-background-radius: 9,8,5,49,8,5,4; -fx-padding: 15 30 15 30; -fx-font-family: &quot;Helvetica&quot;; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333; -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" text="Titre1" fx:id="title2" onAction="#title2Click">
+              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),        linear-gradient(#020b02, #3a3a3a),        linear-gradient(#b9b9b9 0%, #c2c2c2 20%, #afafaf 80%, #c8c8c8 100%),        linear-gradient(#f5f5f5 0%, #dbdbdb 50%, #cacaca 51%, #d7d7d7 100%); -fx-background-insets: 0,1,4,5; -fx-background-radius: 9,8,5,49,8,5,4; -fx-padding: 15 30 15 30; -fx-font-family: &quot;Helvetica&quot;; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333; -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" text="titre" fx:id="title2" onAction="#title2Click">
                 <font>
                   <Font size="20.0" />
                 </font>
@@ -48,7 +48,7 @@
                   <Insets />
                 </VBox.margin>
               </Button>
-              <Pane prefHeight="366.0" prefWidth="295.0" />
+              <Pane prefHeight="366.0" prefWidth="295.0" fx:id="pane2" />
            </children>
         </VBox>
     </items>
