@@ -22,16 +22,16 @@
                 <menus>
                   <Menu mnemonicParsing="false" text="Album">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Save" />
+                      <MenuItem mnemonicParsing="false" text="Save" onAction="#SaveClick"/>
                       <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="Restore" />
+                      <MenuItem mnemonicParsing="false" text="Restore" onAction="#RestoreClick"/>
                       <SeparatorMenuItem mnemonicParsing="false" />
                       <MenuItem mnemonicParsing="false" text="Quit" onAction="#QuitClick"/>
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Outils">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Rename the album" />
+                      <MenuItem mnemonicParsing="false" text="Rename the album" onAction="#RenameClick" />
                     </items>
                   </Menu>
                 </menus>

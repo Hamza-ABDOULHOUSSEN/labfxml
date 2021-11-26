@@ -14,15 +14,26 @@ public class Root implements Observateur {
 
     Album album;
 
-    Pane askimagepane;
+    Pane askalbumnamepane;
     Pane savepane;
 
     @FXML
     public StackPane root;
 
     @FXML
+    protected void SaveClick() {}
+
+    @FXML
+    protected void RestoreClick() {}
+
+    @FXML
     protected void QuitClick() {
         root.getChildren().add(savepane);
+    }
+
+    @FXML
+    protected void RenameClick() {
+        album.addAskAlbumNamePane();
     }
 
     public Root(Album album) throws IOException {
@@ -31,7 +42,7 @@ public class Root implements Observateur {
 
         //creation observateurs
         SavePane savepane_controller = new SavePane(album);
-        AskImagePane askimagepane_controller = new AskImagePane(album);
+        AskAlbumNamePane askalbumnamepane_controller = new AskAlbumNamePane(album);
 
         FXMLLoader fxmlLoader_savepane = new FXMLLoader(Main.class.getResource("SavePane.fxml"));
 
@@ -40,19 +51,19 @@ public class Root implements Observateur {
             else return null;
         });
 
-        FXMLLoader fxmlLoader_askimagepane = new FXMLLoader(Main.class.getResource("AskImagePane.fxml"));
+        FXMLLoader fxmlLoader_askalbumnamepane = new FXMLLoader(Main.class.getResource("AskAlbumNamePane.fxml"));
 
-        fxmlLoader_askimagepane.setControllerFactory(ic -> {
-            if (ic.equals(album.Controller.AskImagePane.class)) return askimagepane_controller;
+        fxmlLoader_askalbumnamepane.setControllerFactory(ic -> {
+            if (ic.equals(album.Controller.AskAlbumNamePane.class)) return askalbumnamepane_controller;
             else return null;
         });
 
         this.savepane = (Pane) fxmlLoader_savepane.load();
-        this.askimagepane = (Pane) fxmlLoader_askimagepane.load();
+        this.askalbumnamepane = (Pane) fxmlLoader_askalbumnamepane.load();
     }
 
-    public void addAskimagepane() {
-        root.getChildren().add(askimagepane);
+    public void addAskAlbumNamePane() {
+        root.getChildren().add(askalbumnamepane);
     }
     @Override
     public void update() {
