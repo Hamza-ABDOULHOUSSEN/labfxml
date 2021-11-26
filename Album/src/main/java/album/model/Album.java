@@ -53,9 +53,9 @@ public class Album extends SujetObserve {
         if (nb_double_page != 2) {
             nb_double_page-=2;
             doublepage_titre.remove(double_page_courante-1);
-            doublepage_titre.remove(double_page_courante);
+            doublepage_titre.remove(double_page_courante-1);
             doublepage_image.remove(double_page_courante-1);
-            doublepage_image.remove(double_page_courante);
+            doublepage_image.remove(double_page_courante-1);
         }
         notifierObservateurs();
     }
