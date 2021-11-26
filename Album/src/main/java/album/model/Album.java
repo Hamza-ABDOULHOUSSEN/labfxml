@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class Album extends SujetObserve {
     
-    // Liste: observateurs = {root , savepane, askimagepane, droiteinventairephotos}
+    // Liste: observateurs = {root , savepane, askalbumnamepane, droiteinventairephotos, doublepage, information, panneaucontrole}
     // pour avoir acces aux observateurs et ne pas tous les modifier à chaque fois
 
     String nom_album = "";
@@ -25,9 +25,9 @@ public class Album extends SujetObserve {
     
     public Album() {}
 
-    public void addAskimagepane() {
+    public void addAskAlbumNamePane() {
         Root root_controller = (Root) this.observateurs.get(0);
-        root_controller.addAskimagepane();
+        root_controller.addAskAlbumNamePane();
     }
     
     public void cancel(Pane pane){
@@ -87,6 +87,11 @@ public class Album extends SujetObserve {
 
         notifierObservateurs();
 
+    }
+
+    public void ChangeAlbumName(String name) {
+        nom_album = name;
+        notifierObservateurs();
     }
 
 
