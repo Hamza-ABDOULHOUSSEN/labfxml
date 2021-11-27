@@ -3,6 +3,7 @@ package album.Controller;
 import album.Observateur.Observateur;
 import album.model.Album;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,7 @@ public class DoublePage implements Observateur {
     @FXML
     Button title1;
     TextField tf1 = new TextField();
+
     @FXML
     Pane pane1;
 
@@ -35,27 +37,32 @@ public class DoublePage implements Observateur {
     public DoublePage(Album album) {
         this.album = album;
         album.ajouterObservateur(this);
-    }
 
-    @FXML
-    protected void title1Click() {
-        vbox1.getChildren().clear();
+
         tf1.setOnAction(e -> {
             String titre = tf1.getText();
             tf1.clear();
             album.changetitle(titre, 1);
         });
+        tf1.setPadding(new Insets(20, 0,20,0));
+
+        tf2.setOnAction(e -> {
+            String titre = tf2.getText();
+            tf2.clear();
+            album.changetitle(titre, 2);
+        });
+        tf2.setPadding(new Insets(20, 0,20,0));
+    }
+
+    @FXML
+    protected void title1Click() {
+        vbox1.getChildren().clear();
         vbox1.getChildren().addAll(tf1, pane1);
     }
 
     @FXML
     protected void title2Click() {
         vbox2.getChildren().clear();
-        tf2.setOnAction(e -> {
-            String titre = tf2.getText();
-            tf2.clear();
-            album.changetitle(titre, 2);
-        });
         vbox2.getChildren().addAll(tf2, pane2);
     }
 
