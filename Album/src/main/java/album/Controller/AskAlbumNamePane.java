@@ -5,6 +5,7 @@ import album.model.Album;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,7 @@ public class AskAlbumNamePane implements Observateur {
     private Pane askalbumnamepane;
 
     @FXML
-    private TextArea input_name;
+    private TextField input_name;
 
     @FXML
     protected void EnterClick() {
@@ -37,6 +38,7 @@ public class AskAlbumNamePane implements Observateur {
     public AskAlbumNamePane(Album album) {
         this.album = album;
         album.ajouterObservateur(this);
+
     }
 
     @Override
