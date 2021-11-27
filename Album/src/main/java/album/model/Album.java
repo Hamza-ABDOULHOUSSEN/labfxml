@@ -37,25 +37,36 @@ public class Album extends SujetObserve {
         root_controller.root.getChildren().remove(pane);
     };
 
-    public void addphoto(ImageView imageview) {
-        DroiteInventairePhotos droiteinventairephotos_controller = (DroiteInventairePhotos) this.observateurs.get(3);
-        droiteinventairephotos_controller.addphoto(imageview);
-    }
-
     public void ajouter_double_page() {
+        doublepage_titre.add("titre");
+        doublepage_titre.add("titre");
+
+        // arranger position
+        for (Integer i = nb_double_page; i>double_page_courante+1; i--) {
+            if (doublepage_image.get(i) != null) {
+                doublepage_image.put(i+2, doublepage_image.get(i));
+                doublepage_image.remove(i);
+            }
+        }
+
         nb_double_page+=2;
-        doublepage_titre.add("titre");
-        doublepage_titre.add("titre");
-        notifierObservateurs();
+        suivant_double_page();
     }
 
     public void retirer_double_page() {
         if (nb_double_page != 2) {
-            nb_double_page-=2;
             doublepage_titre.remove(double_page_courante-1);
             doublepage_titre.remove(double_page_courante-1);
             doublepage_image.remove(double_page_courante);
             doublepage_image.remove(double_page_courante+1);
+
+            for (Integer i = double_page_courante+2; i<nb_double_page+1; i++) {
+                if (doublepage_image.get(i) != null) {
+                    doublepage_image.put(i-2, doublepage_image.get(i));
+                    doublepage_image.remove(i);
+                }
+            }
+            nb_double_page-=2;
         }
         notifierObservateurs();
     }
