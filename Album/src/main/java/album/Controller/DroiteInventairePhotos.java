@@ -48,7 +48,7 @@ public class DroiteInventairePhotos implements Observateur {
                             event.consume();
                         }
                         else {
-                            Dragboard dragboard = imageview.startDragAndDrop(TransferMode.MOVE);
+                            Dragboard dragboard = imageview.startDragAndDrop(TransferMode.ANY);
 
                             ClipboardContent clipboardContent = new ClipboardContent();
                             clipboardContent.putImage(image);
@@ -56,6 +56,10 @@ public class DroiteInventairePhotos implements Observateur {
 
                             event.consume();
                         }
+                    });
+
+                    imageview.setOnDragDone(event -> {
+                        event.consume();
                     });
 
                     addphoto(imageview);

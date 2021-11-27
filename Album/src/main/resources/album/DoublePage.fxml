@@ -14,8 +14,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 
 <SplitPane prefHeight="425.0" prefWidth="476.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.DoublePage">
     <items>
@@ -32,7 +34,11 @@
                     <Insets />
                  </VBox.margin>
               </Button>
-              <Pane prefHeight="366.0" prefWidth="295.0" fx:id="pane1" />
+              <Pane prefHeight="366.0" prefWidth="295.0" fx:id="pane1">
+                 <children>
+                    <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="10.0" layoutY="61.0" onDragOver="#Dragover" onDragDropped="#Dragdropped1" pickOnBounds="true" preserveRatio="true" fx:id="imageview1" />
+                 </children>
+              </Pane>
            </children>
         </VBox>
         <VBox prefHeight="420.0" prefWidth="295.0" fx:id="vbox2">
@@ -48,7 +54,11 @@
                   <Insets />
                 </VBox.margin>
               </Button>
-              <Pane prefHeight="366.0" prefWidth="295.0" fx:id="pane2" />
+              <Pane prefHeight="366.0" prefWidth="295.0" fx:id="pane2">
+                 <children>
+                    <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="10.0" layoutY="61.0" onDragOver="#Dragover" onDragDropped="#Dragdropped2" pickOnBounds="true" preserveRatio="true" fx:id="imageview2" />
+                 </children>
+              </Pane>
            </children>
         </VBox>
     </items>
