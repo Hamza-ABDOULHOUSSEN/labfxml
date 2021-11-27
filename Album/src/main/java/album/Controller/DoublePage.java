@@ -117,12 +117,29 @@ public class DoublePage implements Observateur {
 
     @Override
     public void update() {
-        ArrayList<String> doublepage_titre = album.getDoublepage_titre();
+        Hashtable<Integer, String> doublepage_titre = album.getDoublepage_titre();
         Hashtable<Integer, Image> doublepage_image = album.getDoublepage_image();
         int pos = album.getDouble_page_courante();
+        
+        String t1 = doublepage_titre.get(pos);
+        if (t1 != null) {
+            if (!t1.equals("")) {
+                title1.setText(t1);
+            }
+        }
+        else {
+            title1.setText("Insert title");
+        }
 
-        title1.setText(doublepage_titre.get(pos-1));
-        title2.setText(doublepage_titre.get(pos));
+        String t2 = doublepage_titre.get(pos+1);
+        if (t2 != null) {
+            if (!t2.equals("")) {
+                title2.setText(t2);
+            }
+        }
+        else {
+            title2.setText("Insert title");
+        }
 
         if (doublepage_image.get(pos) != null) {
             Image image = doublepage_image.get(pos);
