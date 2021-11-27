@@ -5,6 +5,9 @@ import album.model.Album;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -37,7 +40,24 @@ public class DroiteInventairePhotos implements Observateur {
                 String name = f.getName();
                 String ext = name.substring(name.lastIndexOf(".")+1);
                 if ( extensions.contains(ext) ) {
-                    ImageView imageview = new ImageView(new Image(f.toURI().toString(), 100, 100, true, true));
+                    Image image = new Image(f.toURI().toString(), 100, 100, true, true);
+                    ImageView imageview = new ImageView(image);
+
+                    imageview.setOnDragDetected(event -> {
+                        if (image == null){
+                            event.consume();
+                        }
+                        else {
+                            Dragboard dragboard = imageview.startDragAndDrop(TransferMode.MOVE);
+
+                            ClipboardContent clipboardContent = new ClipboardContent();
+                            clipboardContent.putImage(image);
+                            dragboard.setContent(clipboardContent);
+
+                            event.consume();
+                        }
+                    });
+
                     addphoto(imageview);
                 }
             }
