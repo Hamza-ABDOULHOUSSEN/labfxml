@@ -95,7 +95,9 @@ public class Album extends SujetObserve {
             pos++;
         }
 
-        doublepage_titre.put(pos, titre);
+        if (!titre.equals("")) {
+            doublepage_titre.put(pos, titre);
+        }
         notifierObservateurs();
     }
 
@@ -109,6 +111,23 @@ public class Album extends SujetObserve {
         if (page==2) {
             pos++;
         }
+
+        Boolean changetitre = false;
+        if (doublepage_titre.get(pos) == null) {
+            changetitre = true;
+        }
+        if (doublepage_image.get(pos) != null) {
+            String prevpath = doublepage_image.get(pos);
+            String name = prevpath.substring(prevpath.lastIndexOf("/")+1, prevpath.lastIndexOf("."));
+            if (name.equals(doublepage_titre.get(pos))) {
+                changetitre = true;
+            }
+        }
+        if (changetitre) {
+            String name = image_path.substring(image_path.lastIndexOf("/")+1, image_path.lastIndexOf("."));
+            doublepage_titre.put(pos, name);
+        }
+
         doublepage_image.put(pos, image_path);
         notifierObservateurs();
     }
