@@ -88,16 +88,17 @@ public class DoublePage implements Observateur {
         boolean success = false;
 
         Image image = null;
+        String image_path = null;
         if (dragboard.hasImage()){
             image = dragboard.getImage();
-            //image = new Image(image.getUrl(), 200, 200, true, true);
+            image_path = dragboard.getString();
             success = true;
         }
 
         event.setDropCompleted(success);
 
         if (image != null) {
-            album.AddImage(image, 1);
+            album.AddImage(image_path, 1);
         }
 
         event.consume();
@@ -106,11 +107,21 @@ public class DoublePage implements Observateur {
     @FXML
     protected void Dragdropped2(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        Image image = dragboard.getImage();
+        boolean success = false;
 
-        event.setDropCompleted(true);
+        Image image = null;
+        String image_path = null;
+        if (dragboard.hasImage()){
+            image = dragboard.getImage();
+            image_path = dragboard.getString();
+            success = true;
+        }
 
-        album.AddImage(image, 2);
+        event.setDropCompleted(success);
+
+        if (image != null) {
+            album.AddImage(image_path, 2);
+        }
 
         event.consume();
     }
@@ -118,7 +129,7 @@ public class DoublePage implements Observateur {
     @Override
     public void update() {
         Hashtable<Integer, String> doublepage_titre = album.getDoublepage_titre();
-        Hashtable<Integer, Image> doublepage_image = album.getDoublepage_image();
+        Hashtable<Integer, String> doublepage_image = album.getDoublepage_image();
         int pos = album.getDouble_page_courante();
         
         String t1 = doublepage_titre.get(pos);
@@ -142,14 +153,16 @@ public class DoublePage implements Observateur {
         }
 
         if (doublepage_image.get(pos) != null) {
-            Image image = doublepage_image.get(pos);
+            String image_path = doublepage_image.get(pos);
+            Image image = new Image(image_path);
             imageview1.setImage(image);
         }
         else {
             imageview1.setImage(null);
         }
         if (doublepage_image.get(pos+1) != null) {
-            Image image = doublepage_image.get(pos+1);
+            String image_path = doublepage_image.get(pos+1);
+            Image image = new Image(image_path);
             imageview2.setImage(image);
         }
         else {

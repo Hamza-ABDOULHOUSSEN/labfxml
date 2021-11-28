@@ -19,10 +19,10 @@ import java.util.Arrays;
 public class DroiteInventairePhotos implements Observateur {
 
     Album album;
-    ArrayList<String> extensions = new ArrayList<String>(Arrays.asList("gif", "jpg", "png", "jpeg", "tiff"));
+    ArrayList<String> extensions = new ArrayList<>(Arrays.asList("gif", "jpg", "png", "jpeg", "tiff"));
 
     // donnée models
-    ArrayList<ImageView> liste_photos = new ArrayList<ImageView>();
+    ArrayList<ImageView> liste_photos = new ArrayList<>();
     int lig = -1;
     int col = 2;
 
@@ -40,22 +40,19 @@ public class DroiteInventairePhotos implements Observateur {
                 String name = f.getName();
                 String ext = name.substring(name.lastIndexOf(".")+1);
                 if ( extensions.contains(ext) ) {
-                    Image image = new Image(f.toURI().toString(), 100, 100, true, true);
+                    String image_path = f.toURI().toString();
+                    Image image = new Image(image_path, 100, 100, true, true);
                     ImageView imageview = new ImageView(image);
 
                     imageview.setOnDragDetected(event -> {
-                        if (image == null){
-                            event.consume();
-                        }
-                        else {
-                            Dragboard dragboard = imageview.startDragAndDrop(TransferMode.ANY);
+                        Dragboard dragboard = imageview.startDragAndDrop(TransferMode.ANY);
 
-                            ClipboardContent clipboardContent = new ClipboardContent();
-                            clipboardContent.putImage(image);
-                            dragboard.setContent(clipboardContent);
+                        ClipboardContent clipboardContent = new ClipboardContent();
+                        clipboardContent.putImage(image);
+                        clipboardContent.putString(image_path);
+                        dragboard.setContent(clipboardContent);
 
-                            event.consume();
-                        }
+                        event.consume();
                     });
 
                     imageview.setOnDragDone(event -> {

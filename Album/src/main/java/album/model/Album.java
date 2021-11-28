@@ -19,8 +19,8 @@ public class Album extends SujetObserve {
     int nb_double_page = 2;
     int double_page_courante = 1;
 
-    Hashtable<Integer, String> doublepage_titre = new Hashtable<Integer, String>();
-    Hashtable<Integer, Image> doublepage_image = new Hashtable<Integer, Image>();
+    Hashtable<Integer, String> doublepage_titre = new Hashtable<>();
+    Hashtable<Integer, String> doublepage_image = new Hashtable<>();
     
     public Album() {}
 
@@ -32,7 +32,7 @@ public class Album extends SujetObserve {
     public void cancel(Pane pane){
         Root root_controller = (Root) this.observateurs.get(0);
         root_controller.root.getChildren().remove(pane);
-    };
+    }
 
     public void ajouter_double_page() {
 
@@ -104,12 +104,12 @@ public class Album extends SujetObserve {
         notifierObservateurs();
     }
 
-    public void AddImage(Image image, int page) {
+    public void AddImage(String image_path, int page) {
         int pos = double_page_courante;
         if (page==2) {
             pos++;
         }
-        doublepage_image.put(pos, image);
+        doublepage_image.put(pos, image_path);
         notifierObservateurs();
     }
 
@@ -119,5 +119,5 @@ public class Album extends SujetObserve {
     public int getNb_double_page() {return this.nb_double_page;}
     public int getDouble_page_courante() {return this.double_page_courante;}
     public Hashtable<Integer, String> getDoublepage_titre() {return this.doublepage_titre;}
-    public Hashtable<Integer, Image> getDoublepage_image() {return this.doublepage_image;}
+    public Hashtable<Integer, String> getDoublepage_image() {return this.doublepage_image;}
 }
