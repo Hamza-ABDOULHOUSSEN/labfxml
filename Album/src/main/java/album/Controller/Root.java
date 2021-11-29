@@ -21,10 +21,14 @@ public class Root implements Observateur {
     public StackPane root;
 
     @FXML
-    protected void SaveClick() {}
+    protected void SaveClick() throws IOException {
+        album.save();
+    }
 
     @FXML
-    protected void RestoreClick() {}
+    protected void RestoreClick() throws IOException, ClassNotFoundException {
+        album.restore();
+    }
 
     @FXML
     protected void QuitClick() {

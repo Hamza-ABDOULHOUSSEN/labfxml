@@ -1,7 +1,6 @@
 package album;
 
 import album.Controller.*;
-import album.Observateur.Observateur;
 import album.model.Album;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

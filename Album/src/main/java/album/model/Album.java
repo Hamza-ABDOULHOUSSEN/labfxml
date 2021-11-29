@@ -2,15 +2,16 @@ package album.model;
 
 import album.Controller.Root;
 import album.Observateur.SujetObserve;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.*;
 import java.util.Hashtable;
 
 public class Album extends SujetObserve {
-    
+
+    FileOutputStream fileOutputStream = new FileOutputStream("save.txt");
+    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
     // Liste: observateurs = {root , savepane, askalbumnamepane, droiteinventairephotos, doublepage, information, panneaucontrole}
     // pour avoir acces aux observateurs et ne pas tous les modifier à chaque fois
 
@@ -22,7 +23,7 @@ public class Album extends SujetObserve {
     Hashtable<Integer, String> doublepage_titre = new Hashtable<>();
     Hashtable<Integer, String> doublepage_image = new Hashtable<>();
     
-    public Album() {}
+    public Album() throws IOException {}
 
     public void addAskAlbumNamePane() {
         Root root_controller = (Root) this.observateurs.get(0);
@@ -129,6 +130,20 @@ public class Album extends SujetObserve {
         }
 
         doublepage_image.put(pos, image_path);
+        notifierObservateurs();
+    }
+
+    public void save() throws IOException {
+        objectOutputStream.writeObject(doublepage_titre);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }
+
+    public void restore() throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream("save.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        doublepage_titre = (Hashtable<Integer, String>) objectInputStream.readObject();
+        objectInputStream.close();
         notifierObservateurs();
     }
 

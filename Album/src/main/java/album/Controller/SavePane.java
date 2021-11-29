@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
+
 public class SavePane implements Observateur {
 
     Album album;
@@ -15,7 +17,8 @@ public class SavePane implements Observateur {
     private Pane savepane;
 
     @FXML
-    protected void SaveClick() {
+    protected void SaveClick() throws IOException {
+        album.save();
         Platform.exit();
     }
 
