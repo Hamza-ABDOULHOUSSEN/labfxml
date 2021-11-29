@@ -9,9 +9,6 @@ import java.util.Hashtable;
 
 public class Album extends SujetObserve {
 
-    FileOutputStream fileOutputStream = new FileOutputStream("save.txt");
-    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
     // Liste: observateurs = {root , savepane, askalbumnamepane, droiteinventairephotos, doublepage, information, panneaucontrole}
     // pour avoir acces aux observateurs et ne pas tous les modifier à chaque fois
 
@@ -134,15 +131,20 @@ public class Album extends SujetObserve {
     }
 
     public void save() throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("./src/main/resources/save/save.txt");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(doublepage_titre);
+        objectOutputStream.writeObject(doublepage_image);
+
         objectOutputStream.flush();
         objectOutputStream.close();
     }
 
     public void restore() throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream("save.txt");
+        FileInputStream fileInputStream = new FileInputStream("./src/main/resources/save/save.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         doublepage_titre = (Hashtable<Integer, String>) objectInputStream.readObject();
+        doublepage_image = (Hashtable<Integer, String>) objectInputStream.readObject();
         objectInputStream.close();
         notifierObservateurs();
     }
