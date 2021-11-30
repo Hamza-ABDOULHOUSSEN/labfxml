@@ -5,6 +5,7 @@ import album.model.Album;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -108,8 +109,6 @@ public class DroiteInventairePhotos implements Observateur {
 
         inventaire_photos.getChildren().clear();
         inventaire_photos.getRowConstraints().clear();
-        System.err.println(inventaire_photos.getRowCount());
-
 
         liste_photos = new ArrayList<>();
 

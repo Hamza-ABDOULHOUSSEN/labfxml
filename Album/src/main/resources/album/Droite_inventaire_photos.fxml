@@ -18,7 +18,7 @@
             <Font name="Bebas Neue" size="20.0" />
          </font>
       </Button>
-      <ScrollPane prefHeight="490.0" prefWidth="337.0">
+      <ScrollPane prefHeight="490.0" prefWidth="337.0" fitToHeight="true" fitToWidth="true" >
          <content>
             <GridPane prefHeight="0" prefWidth="300.0" fx:id="inventaire_photos">
               <columnConstraints>
