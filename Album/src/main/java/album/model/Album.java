@@ -1,10 +1,12 @@
 package album.model;
 
+import album.Controller.DroiteInventairePhotos;
 import album.Controller.Root;
 import album.Observateur.SujetObserve;
 import javafx.scene.layout.Pane;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Album extends SujetObserve {
@@ -19,8 +21,10 @@ public class Album extends SujetObserve {
 
     Hashtable<Integer, String> doublepage_titre = new Hashtable<>();
     Hashtable<Integer, String> doublepage_image = new Hashtable<>();
+
+    ArrayList<String> grid_inventory = new ArrayList<>();
     
-    public Album() throws IOException {}
+    public Album() {}
 
     public void addAskAlbumNamePane() {
         Root root_controller = (Root) this.observateurs.get(0);
@@ -133,8 +137,12 @@ public class Album extends SujetObserve {
     public void save() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("./src/main/resources/save/save.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(nom_album);
+        objectOutputStream.writeObject(nb_double_page);
+        objectOutputStream.writeObject(double_page_courante);
         objectOutputStream.writeObject(doublepage_titre);
         objectOutputStream.writeObject(doublepage_image);
+        objectOutputStream.writeObject(grid_inventory);
 
         objectOutputStream.flush();
         objectOutputStream.close();
@@ -143,10 +151,40 @@ public class Album extends SujetObserve {
     public void restore() throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream("./src/main/resources/save/save.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        nom_album = (String) objectInputStream.readObject();
+        nb_double_page = (int) objectInputStream.readObject();
+        double_page_courante = (int) objectInputStream.readObject();
         doublepage_titre = (Hashtable<Integer, String>) objectInputStream.readObject();
         doublepage_image = (Hashtable<Integer, String>) objectInputStream.readObject();
+        grid_inventory = (ArrayList<String>) objectInputStream.readObject();
         objectInputStream.close();
+        DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(3);
+        d_controller.LoadInventory();
         notifierObservateurs();
+    }
+
+    public void AddImageInventory(String image_path) {
+        grid_inventory.add(image_path);
+    }
+
+    public Boolean Checksave() throws IOException, ClassNotFoundException {
+        Boolean isSaved = true;
+
+        FileInputStream fileInputStream = new FileInputStream("./src/main/resources/save/save.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        String nom_album_save = (String) objectInputStream.readObject();
+        int nb_double_page_save = (int) objectInputStream.readObject();
+        int double_page_courante_save = (int) objectInputStream.readObject();
+        Hashtable<Integer, String> doublepage_titre_save = (Hashtable<Integer, String>) objectInputStream.readObject();
+        Hashtable<Integer, String> doublepage_image_save = (Hashtable<Integer, String>) objectInputStream.readObject();
+        ArrayList<String> grid_inventory_save = (ArrayList<String>) objectInputStream.readObject();
+        objectInputStream.close();
+
+        if (nb_double_page_save != nb_double_page || double_page_courante_save != double_page_courante || !nom_album_save.equals(nom_album) || !doublepage_titre_save.equals(doublepage_titre) || !doublepage_image_save.equals(doublepage_image) || !grid_inventory_save.equals(grid_inventory)) {
+            isSaved = false;
+        }
+
+        return isSaved;
     }
 
 
@@ -156,4 +194,5 @@ public class Album extends SujetObserve {
     public int getDouble_page_courante() {return this.double_page_courante;}
     public Hashtable<Integer, String> getDoublepage_titre() {return this.doublepage_titre;}
     public Hashtable<Integer, String> getDoublepage_image() {return this.doublepage_image;}
+    public ArrayList<String> getGrid_inventory() {return grid_inventory;}
 }

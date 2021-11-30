@@ -3,12 +3,15 @@ package album.Controller;
 import album.Observateur.Observateur;
 import album.model.Album;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -23,8 +26,6 @@ public class DroiteInventairePhotos implements Observateur {
 
     // donnée models
     ArrayList<ImageView> liste_photos = new ArrayList<>();
-    int lig = -1;
-    int col = 2;
 
     @FXML
     private GridPane inventaire_photos;
@@ -41,25 +42,9 @@ public class DroiteInventairePhotos implements Observateur {
                 String ext = name.substring(name.lastIndexOf(".")+1);
                 if ( extensions.contains(ext) ) {
                     String image_path = f.toURI().toString();
-                    Image image = new Image(image_path, 100, 100, true, true);
-                    ImageView imageview = new ImageView(image);
 
-                    imageview.setOnDragDetected(event -> {
-                        Dragboard dragboard = imageview.startDragAndDrop(TransferMode.ANY);
-
-                        ClipboardContent clipboardContent = new ClipboardContent();
-                        clipboardContent.putImage(image);
-                        clipboardContent.putString(image_path);
-                        dragboard.setContent(clipboardContent);
-
-                        event.consume();
-                    });
-
-                    imageview.setOnDragDone(event -> {
-                        event.consume();
-                    });
-
-                    addphoto(imageview);
+                    addphoto(image_path);
+                    album.AddImageInventory(image_path);
                 }
             }
         }
@@ -72,23 +57,62 @@ public class DroiteInventairePhotos implements Observateur {
 
     @Override
     public void update() {
-
+        // On ne met pas à jour la grille à chaque action, ca prendrait trop de temps
     }
 
-    public void addphoto(ImageView imageview) {
+    public void addphoto(String image_path) {
+        ContextMenu cm = new ContextMenu();
+        MenuItem mi1 = new MenuItem("Add Left");
+        MenuItem mi2 = new MenuItem("Add Right");
+        mi1.setOnAction(e->{
+            album.AddImage(image_path, 1);
+        });
+        mi2.setOnAction(e->{
+            album.AddImage(image_path, 2);
+        });
+        cm.getItems().addAll(mi1, mi2);
+        Image image = new Image(image_path, 100, 100, true, true);
+        ImageView imageview = new ImageView(image);
+        imageview.setOnContextMenuRequested(e -> cm.show(imageview, e.getScreenX(), e.getScreenY()));
+
+        imageview.setOnDragDetected(event -> {
+            Dragboard dragboard = imageview.startDragAndDrop(TransferMode.ANY);
+
+            ClipboardContent clipboardContent = new ClipboardContent();
+            clipboardContent.putImage(image);
+            clipboardContent.putString(image_path);
+            dragboard.setContent(clipboardContent);
+
+            event.consume();
+        });
+
+        imageview.setOnDragDone(event -> {
+            event.consume();
+        });
 
         liste_photos.add(imageview);
 
-        if (col == 2) {
-            col = 0;
-            lig++;
+        int taille = liste_photos.size() - 1;
+        int col = taille % 3;
+        int lig = taille / 3;
+
+        if (col == 0) {
             inventaire_photos.setPrefHeight(100*lig);
             inventaire_photos.addRow(1);
         }
-        else {
-            col++;
-        }
 
         inventaire_photos.add(imageview, col, lig);
+    }
+
+    public void LoadInventory() {
+        inventaire_photos.getRowConstraints().clear();
+        ArrayList<ImageView> liste_photos = new ArrayList<>();
+
+        ArrayList<String> grid_inventory = album.getGrid_inventory();
+
+        for (String image_path : grid_inventory) {
+            addphoto(image_path);
+        }
+
     }
 }
