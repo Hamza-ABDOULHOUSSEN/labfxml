@@ -163,6 +163,12 @@ public class Album extends SujetObserve {
         notifierObservateurs();
     }
 
+    public void ClearInventory() {
+        grid_inventory = new ArrayList<>();
+        DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(3);
+        d_controller.LoadInventory();
+    }
+
     public void AddImageInventory(String image_path) {
         grid_inventory.add(image_path);
     }

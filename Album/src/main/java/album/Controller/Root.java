@@ -3,6 +3,7 @@ package album.Controller;
 import album.Main;
 import album.Observateur.Observateur;
 import album.model.Album;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -31,13 +32,24 @@ public class Root implements Observateur {
     }
 
     @FXML
-    protected void QuitClick() {
-        root.getChildren().add(savepane);
+    protected void QuitClick() throws IOException, ClassNotFoundException {
+        Boolean isSaved = album.Checksave();
+        if (!isSaved) {
+            root.getChildren().add(savepane);
+        }
+        else {
+            Platform.exit();
+        }
     }
 
     @FXML
     protected void RenameClick() {
         album.addAskAlbumNamePane();
+    }
+
+    @FXML
+    protected void ClearInvent() {
+        album.ClearInventory();
     }
 
     public Root(Album album) throws IOException {

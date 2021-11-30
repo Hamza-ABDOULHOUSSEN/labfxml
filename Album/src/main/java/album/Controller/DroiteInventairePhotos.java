@@ -105,8 +105,13 @@ public class DroiteInventairePhotos implements Observateur {
     }
 
     public void LoadInventory() {
+
+        inventaire_photos.getChildren().clear();
         inventaire_photos.getRowConstraints().clear();
-        ArrayList<ImageView> liste_photos = new ArrayList<>();
+        System.err.println(inventaire_photos.getRowCount());
+
+
+        liste_photos = new ArrayList<>();
 
         ArrayList<String> grid_inventory = album.getGrid_inventory();
 
