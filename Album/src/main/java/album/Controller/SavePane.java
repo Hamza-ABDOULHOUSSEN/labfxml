@@ -13,8 +13,10 @@ public class SavePane implements Observateur {
 
     Album album;
 
-    @FXML
-    private Pane savepane;
+    public SavePane(Album album) {
+        this.album = album;
+        album.ajouterObservateur(this);
+    }
 
     @FXML
     protected void SaveClick() throws IOException {
@@ -29,12 +31,7 @@ public class SavePane implements Observateur {
 
     @FXML
     protected void CancelClick() {
-        album.cancel(savepane);
-    }
-
-    public SavePane(Album album) {
-        this.album = album;
-        album.ajouterObservateur(this);
+        album.cancel(0);
     }
 
     @Override

@@ -25,15 +25,10 @@ public class Album extends SujetObserve {
     ArrayList<String> grid_inventory = new ArrayList<>();
     
     public Album() {}
-
-    public void addAskAlbumNamePane() {
-        Root root_controller = (Root) this.observateurs.get(0);
-        root_controller.addAskAlbumNamePane();
-    }
     
-    public void cancel(Pane pane){
+    public void cancel(int stage){
         Root root_controller = (Root) this.observateurs.get(0);
-        root_controller.root.getChildren().remove(pane);
+        root_controller.CloseStage(stage);
     }
 
     public void ajouter_double_page() {

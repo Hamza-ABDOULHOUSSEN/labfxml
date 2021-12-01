@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane layoutX="250.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.SavePane" fx:id="savepane">
+<Pane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.SavePane" fx:id="savepane">
      <children>
-        <VBox alignment="CENTER" layoutX="249.0" layoutY="181.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-width: 5; -fx-border-color: Black; -fx-background-color: #acacac;">
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" style="-fx-border-width: 5; -fx-border-color: Black; -fx-background-color: #acacac;">
            <children>
               <Label alignment="CENTER" contentDisplay="CENTER" text="Do you wan't to save ?" textAlignment="CENTER">
                  <font>

@@ -6,8 +6,10 @@ import album.model.Album;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -15,11 +17,47 @@ public class Root implements Observateur {
 
     Album album;
 
-    Pane askalbumnamepane;
-    Pane savepane;
-
     @FXML
     public StackPane root;
+
+    Stage stageAsk = new Stage();
+    Stage stageSave = new Stage();
+
+    public Root(Album album) throws IOException {
+        this.album = album;
+        album.ajouterObservateur(this);
+
+        //creation observateurs
+        SavePane savepane_controller = new SavePane(album);
+
+        FXMLLoader fxmlLoader_savepane = new FXMLLoader(Main.class.getResource("SavePane.fxml"));
+
+        fxmlLoader_savepane.setControllerFactory(ic -> {
+            if (ic.equals(album.Controller.SavePane.class)) return savepane_controller;
+            else return null;
+        });
+
+        Pane savepane = (Pane) fxmlLoader_savepane.load();
+
+        AskAlbumNamePane askalbumnamepane_controller = new AskAlbumNamePane(album);
+
+        FXMLLoader fxmlLoader_askalbumnamepane = new FXMLLoader(Main.class.getResource("AskAlbumNamePane.fxml"));
+
+        fxmlLoader_askalbumnamepane.setControllerFactory(ic -> {
+            if (ic.equals(album.Controller.AskAlbumNamePane.class)) return askalbumnamepane_controller;
+            else return null;
+        });
+
+        Pane askalbumnamepane = (Pane) fxmlLoader_askalbumnamepane.load();
+
+        Scene sceneSave = new Scene(savepane, 400, 200);
+        stageSave.setTitle("Save Album");
+        stageSave.setScene(sceneSave);
+
+        Scene sceneAsk = new Scene(askalbumnamepane, 400, 250);
+        stageAsk.setTitle("Rename Album");
+        stageAsk.setScene(sceneAsk);
+    }
 
     @FXML
     protected void SaveClick() throws IOException {
@@ -35,7 +73,7 @@ public class Root implements Observateur {
     protected void QuitClick() throws IOException, ClassNotFoundException {
         Boolean isSaved = album.Checksave();
         if (!isSaved) {
-            root.getChildren().add(savepane);
+            stageSave.show();
         }
         else {
             Platform.exit();
@@ -43,8 +81,17 @@ public class Root implements Observateur {
     }
 
     @FXML
-    protected void RenameClick() {
-        album.addAskAlbumNamePane();
+    protected void RenameClick() throws IOException {
+        stageAsk.show();
+    }
+
+    public void CloseStage(int stage) {
+        if (stage == 0) {
+            stageSave.close();
+        }
+        else {
+            stageAsk.close();
+        }
     }
 
     @FXML
@@ -52,35 +99,6 @@ public class Root implements Observateur {
         album.ClearInventory();
     }
 
-    public Root(Album album) throws IOException {
-        this.album = album;
-        album.ajouterObservateur(this);
-
-        //creation observateurs
-        SavePane savepane_controller = new SavePane(album);
-        AskAlbumNamePane askalbumnamepane_controller = new AskAlbumNamePane(album);
-
-        FXMLLoader fxmlLoader_savepane = new FXMLLoader(Main.class.getResource("SavePane.fxml"));
-
-        fxmlLoader_savepane.setControllerFactory(ic -> {
-            if (ic.equals(album.Controller.SavePane.class)) return savepane_controller;
-            else return null;
-        });
-
-        FXMLLoader fxmlLoader_askalbumnamepane = new FXMLLoader(Main.class.getResource("AskAlbumNamePane.fxml"));
-
-        fxmlLoader_askalbumnamepane.setControllerFactory(ic -> {
-            if (ic.equals(album.Controller.AskAlbumNamePane.class)) return askalbumnamepane_controller;
-            else return null;
-        });
-
-        this.savepane = (Pane) fxmlLoader_savepane.load();
-        this.askalbumnamepane = (Pane) fxmlLoader_askalbumnamepane.load();
-    }
-
-    public void addAskAlbumNamePane() {
-        root.getChildren().add(askalbumnamepane);
-    }
     @Override
     public void update() {
 
