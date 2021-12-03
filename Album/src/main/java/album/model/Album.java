@@ -145,8 +145,14 @@ public class Album extends SujetObserve {
         objectOutputStream.close();
     }
 
-    public void restore() throws IOException, ClassNotFoundException {
-        String file_path = save_path + "/save.txt";
+    public Boolean restore(String save_path) throws IOException, ClassNotFoundException {
+        String file_path;
+        if (save_path==null) {
+            file_path = this.save_path + "/save.txt";
+        }
+        else {
+            file_path = save_path + "/save.txt";
+        }
 
         try {
             FileInputStream fileInputStream = new FileInputStream(file_path);
@@ -161,10 +167,14 @@ public class Album extends SujetObserve {
             DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(4);
             d_controller.LoadInventory();
             notifierObservateurs();
+
+            this.save_path = save_path;
+            return true;
         }
         catch (FileNotFoundException e) {
             Root root_controller = (Root) this.observateurs.get(0);
             root_controller.OpenStage(2);
+            return false;
         }
 
     }
@@ -197,10 +207,6 @@ public class Album extends SujetObserve {
         }
 
         return isSaved;
-    }
-
-    public void SetSavePath(String save_path) {
-        this.save_path = save_path;
     }
 
     public void open() throws IOException, ClassNotFoundException {

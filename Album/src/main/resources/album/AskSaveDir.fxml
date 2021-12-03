@@ -21,6 +21,14 @@
                        <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                  </Label>
+                 <Label alignment="CENTER" contentDisplay="CENTER" text="" textAlignment="CENTER" textFill="RED" fx:id="error_message">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                 </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="input_name" onAction="#EnterClick" prefHeight="38.0" prefWidth="280.0">

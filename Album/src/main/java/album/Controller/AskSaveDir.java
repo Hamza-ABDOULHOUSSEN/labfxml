@@ -3,6 +3,7 @@ package album.Controller;
 import album.Observateur.Observateur;
 import album.model.Album;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -17,26 +18,30 @@ public class AskSaveDir implements Observateur {
     @FXML
     private TextField input_name;
 
+    @FXML
+    private Label error_message;
+
     public AskSaveDir(Album album) {
         this.album = album;
         album.ajouterObservateur(this);
-
     }
 
     @FXML
     protected void EnterClick() throws IOException, ClassNotFoundException {
         String name = input_name.getText();
-
-        if (!name.equals("")) {
-            album.SetSavePath(name);
-            CancelClick();
-            album.restore();
+        CancelClick();
+        Boolean restore = album.restore(name);
+        if (!restore) {
+            error_message.setText("File not Found");
         }
-
+        else {
+            error_message.setText("");
+        }
     }
 
     @FXML
     protected void CancelClick() {
+        error_message.setText("");
         album.cancel(2);
     }
 
@@ -44,9 +49,15 @@ public class AskSaveDir implements Observateur {
     protected void searchdir() throws IOException, ClassNotFoundException {
         File dossier = new DirectoryChooser().showDialog(new Stage());
         String savepath = dossier.getPath();
-        album.SetSavePath(savepath);
+        input_name.setText(savepath);
         CancelClick();
-        album.restore();
+        Boolean restore = album.restore(savepath);
+        if (!restore) {
+            error_message.setText("File not Found");
+        }
+        else {
+            error_message.setText("");
+        }
     }
 
     @Override
