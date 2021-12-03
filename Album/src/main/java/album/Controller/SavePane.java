@@ -19,8 +19,8 @@ public class SavePane implements Observateur {
     }
 
     @FXML
-    protected void SaveClick() throws IOException {
-        album.save();
+    protected void SaveClick() throws IOException, ClassNotFoundException {
+        album.save(null);
         Platform.exit();
     }
 

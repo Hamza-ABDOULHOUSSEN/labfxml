@@ -24,7 +24,11 @@
                     <items>
                       <MenuItem mnemonicParsing="false" text="Save" onAction="#SaveClick"/>
                       <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Save As" onAction="#SaveAsClick"/>
+                      <SeparatorMenuItem mnemonicParsing="false" />
                       <MenuItem mnemonicParsing="false" text="Restore" onAction="#RestoreClick"/>
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Restore From" onAction="#RestoreFromClick"/>
                       <SeparatorMenuItem mnemonicParsing="false" />
                       <MenuItem mnemonicParsing="false" text="Quit" onAction="#QuitClick"/>
                     </items>

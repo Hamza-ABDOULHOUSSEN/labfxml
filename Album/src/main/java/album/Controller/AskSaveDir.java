@@ -15,6 +15,8 @@ public class AskSaveDir implements Observateur {
 
     Album album;
 
+    int SaveOrRestore;      // 0 : Save  1 : Restore
+
     @FXML
     private TextField input_name;
 
@@ -26,12 +28,24 @@ public class AskSaveDir implements Observateur {
         album.ajouterObservateur(this);
     }
 
+    public void SetSaveOrRestore(int SaveOrRestore) {
+        this.SaveOrRestore = SaveOrRestore;
+    }
+
     @FXML
     protected void EnterClick() throws IOException, ClassNotFoundException {
         String name = input_name.getText();
         CancelClick();
-        Boolean restore = album.restore(name);
-        if (!restore) {
+        Boolean filefound;
+
+        if (SaveOrRestore == 0) {
+            filefound = album.save(name);
+        }
+        else {
+            filefound = album.restore(name);
+        }
+
+        if (!filefound) {
             error_message.setText("File not Found");
         }
         else {
@@ -51,8 +65,16 @@ public class AskSaveDir implements Observateur {
         String savepath = dossier.getPath();
         input_name.setText(savepath);
         CancelClick();
-        Boolean restore = album.restore(savepath);
-        if (!restore) {
+        Boolean filefound;
+
+        if (SaveOrRestore == 0) {
+            filefound = album.save(savepath);
+        }
+        else {
+            filefound = album.restore(savepath);
+        }
+
+        if (!filefound) {
             error_message.setText("File not Found");
         }
         else {

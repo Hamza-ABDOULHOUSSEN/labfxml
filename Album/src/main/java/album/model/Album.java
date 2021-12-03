@@ -1,5 +1,6 @@
 package album.model;
 
+import album.Controller.AskSaveDir;
 import album.Controller.DroiteInventairePhotos;
 import album.Controller.Root;
 import album.Observateur.SujetObserve;
@@ -131,18 +132,44 @@ public class Album extends SujetObserve {
         notifierObservateurs();
     }
 
-    public void save() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("./src/main/resources/save/save.txt");
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(nom_album);
-        objectOutputStream.writeObject(nb_double_page);
-        objectOutputStream.writeObject(double_page_courante);
-        objectOutputStream.writeObject(doublepage_titre);
-        objectOutputStream.writeObject(doublepage_image);
-        objectOutputStream.writeObject(grid_inventory);
+    public Boolean save(String save_path) throws IOException, ClassNotFoundException {
+        String file_path;
+        if (save_path==null) {
+            file_path = this.save_path + "/save.txt";
+        }
+        else {
+            file_path = save_path + "/save.txt";
+        }
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file_path);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(nom_album);
+            objectOutputStream.writeObject(nb_double_page);
+            objectOutputStream.writeObject(double_page_courante);
+            objectOutputStream.writeObject(doublepage_titre);
+            objectOutputStream.writeObject(doublepage_image);
+            objectOutputStream.writeObject(grid_inventory);
+            objectOutputStream.flush();
+            objectOutputStream.close();
 
-        objectOutputStream.flush();
-        objectOutputStream.close();
+            DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(4);
+            d_controller.LoadInventory();
+            notifierObservateurs();
+
+            this.save_path = save_path;
+            return true;
+        }
+        catch (FileNotFoundException e) {
+            saveas();
+            return false;
+        }
+    }
+
+    public void saveas() {
+        Root root_controller = (Root) this.observateurs.get(0);
+        root_controller.OpenStage(2);
+        AskSaveDir asksavedir_controller = (AskSaveDir) this.observateurs.get(3);
+        asksavedir_controller.SetSaveOrRestore(0);
     }
 
     public Boolean restore(String save_path) throws IOException, ClassNotFoundException {
@@ -172,11 +199,16 @@ public class Album extends SujetObserve {
             return true;
         }
         catch (FileNotFoundException e) {
-            Root root_controller = (Root) this.observateurs.get(0);
-            root_controller.OpenStage(2);
+            restorefrom();
             return false;
         }
+    }
 
+    public void restorefrom() {
+        Root root_controller = (Root) this.observateurs.get(0);
+        root_controller.OpenStage(2);
+        AskSaveDir asksavedir_controller = (AskSaveDir) this.observateurs.get(3);
+        asksavedir_controller.SetSaveOrRestore(1);
     }
 
     public void ClearInventory() {
