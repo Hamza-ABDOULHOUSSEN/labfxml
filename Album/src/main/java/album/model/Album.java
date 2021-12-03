@@ -224,17 +224,22 @@ public class Album extends SujetObserve {
     public Boolean Checksave() throws IOException, ClassNotFoundException {
         Boolean isSaved = true;
 
-        FileInputStream fileInputStream = new FileInputStream("./src/main/resources/save/save.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        String nom_album_save = (String) objectInputStream.readObject();
-        int nb_double_page_save = (int) objectInputStream.readObject();
-        int double_page_courante_save = (int) objectInputStream.readObject();
-        Hashtable<Integer, String> doublepage_titre_save = (Hashtable<Integer, String>) objectInputStream.readObject();
-        Hashtable<Integer, String> doublepage_image_save = (Hashtable<Integer, String>) objectInputStream.readObject();
-        ArrayList<String> grid_inventory_save = (ArrayList<String>) objectInputStream.readObject();
-        objectInputStream.close();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(save_path + "/save.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            String nom_album_save = (String) objectInputStream.readObject();
+            int nb_double_page_save = (int) objectInputStream.readObject();
+            int double_page_courante_save = (int) objectInputStream.readObject();
+            Hashtable<Integer, String> doublepage_titre_save = (Hashtable<Integer, String>) objectInputStream.readObject();
+            Hashtable<Integer, String> doublepage_image_save = (Hashtable<Integer, String>) objectInputStream.readObject();
+            ArrayList<String> grid_inventory_save = (ArrayList<String>) objectInputStream.readObject();
+            objectInputStream.close();
 
-        if (nb_double_page_save != nb_double_page || double_page_courante_save != double_page_courante || !nom_album_save.equals(nom_album) || !doublepage_titre_save.equals(doublepage_titre) || !doublepage_image_save.equals(doublepage_image) || !grid_inventory_save.equals(grid_inventory)) {
+            if (nb_double_page_save != nb_double_page || double_page_courante_save != double_page_courante || !nom_album_save.equals(nom_album) || !doublepage_titre_save.equals(doublepage_titre) || !doublepage_image_save.equals(doublepage_image) || !grid_inventory_save.equals(grid_inventory)) {
+                isSaved = false;
+            }
+        }
+        catch (FileNotFoundException e) {
             isSaved = false;
         }
 
