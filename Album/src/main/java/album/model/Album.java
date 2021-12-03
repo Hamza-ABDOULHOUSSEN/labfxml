@@ -28,6 +28,24 @@ public class Album extends SujetObserve {
     ArrayList<String> grid_inventory = new ArrayList<>();
     
     public Album() {}
+
+    public void newAlbum() {
+        nom_album = "";
+
+        save_path = "";
+
+        nb_double_page = 2;
+        double_page_courante = 1;
+
+        doublepage_titre = new Hashtable<>();
+        doublepage_image = new Hashtable<>();
+
+        grid_inventory = new ArrayList<>();
+
+        DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(4);
+        d_controller.LoadInventory();
+        notifierObservateurs();
+    }
     
     public void cancel(int stage){
         Root root_controller = (Root) this.observateurs.get(0);

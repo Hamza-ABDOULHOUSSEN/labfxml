@@ -76,6 +76,11 @@ public class Root implements Observateur {
     }
 
     @FXML
+    protected void NewAlbumClick() {
+        album.newAlbum();
+    }
+
+    @FXML
     protected void SaveClick() throws IOException, ClassNotFoundException {
         album.save(null);
     }

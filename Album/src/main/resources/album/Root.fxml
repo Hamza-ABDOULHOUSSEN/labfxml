@@ -22,6 +22,8 @@
                 <menus>
                   <Menu mnemonicParsing="false" text="Album">
                     <items>
+                      <MenuItem mnemonicParsing="false" text="New Album" onAction="#NewAlbumClick"/>
+                      <SeparatorMenuItem mnemonicParsing="false" />
                       <MenuItem mnemonicParsing="false" text="Save" onAction="#SaveClick"/>
                       <SeparatorMenuItem mnemonicParsing="false" />
                       <MenuItem mnemonicParsing="false" text="Save As" onAction="#SaveAsClick"/>
