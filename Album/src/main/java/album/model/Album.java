@@ -11,10 +11,12 @@ import java.util.Hashtable;
 
 public class Album extends SujetObserve {
 
-    // Liste: observateurs = {root , savepane, askalbumnamepane, droiteinventairephotos, doublepage, information, panneaucontrole}
+    // Liste: observateurs = {root , savepane, askalbumnamepane, asksavedir, droiteinventairephotos, doublepage, information, panneaucontrole}
     // pour avoir acces aux observateurs et ne pas tous les modifier à chaque fois
 
     String nom_album = "";
+
+    String save_path = "";
 
     int nb_double_page = 2;
     int double_page_courante = 1;
@@ -144,23 +146,32 @@ public class Album extends SujetObserve {
     }
 
     public void restore() throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream("./src/main/resources/save/save.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        nom_album = (String) objectInputStream.readObject();
-        nb_double_page = (int) objectInputStream.readObject();
-        double_page_courante = (int) objectInputStream.readObject();
-        doublepage_titre = (Hashtable<Integer, String>) objectInputStream.readObject();
-        doublepage_image = (Hashtable<Integer, String>) objectInputStream.readObject();
-        grid_inventory = (ArrayList<String>) objectInputStream.readObject();
-        objectInputStream.close();
-        DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(3);
-        d_controller.LoadInventory();
-        notifierObservateurs();
+        String file_path = save_path + "/save.txt";
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file_path);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            nom_album = (String) objectInputStream.readObject();
+            nb_double_page = (int) objectInputStream.readObject();
+            double_page_courante = (int) objectInputStream.readObject();
+            doublepage_titre = (Hashtable<Integer, String>) objectInputStream.readObject();
+            doublepage_image = (Hashtable<Integer, String>) objectInputStream.readObject();
+            grid_inventory = (ArrayList<String>) objectInputStream.readObject();
+            objectInputStream.close();
+            DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(4);
+            d_controller.LoadInventory();
+            notifierObservateurs();
+        }
+        catch (FileNotFoundException e) {
+            Root root_controller = (Root) this.observateurs.get(0);
+            root_controller.OpenStage(2);
+        }
+
     }
 
     public void ClearInventory() {
         grid_inventory = new ArrayList<>();
-        DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(3);
+        DroiteInventairePhotos d_controller = (DroiteInventairePhotos) this.observateurs.get(4);
         d_controller.LoadInventory();
     }
 
@@ -188,6 +199,21 @@ public class Album extends SujetObserve {
         return isSaved;
     }
 
+    public void SetSavePath(String save_path) {
+        this.save_path = save_path;
+    }
+
+    public void open() throws IOException, ClassNotFoundException {
+        // restaurer depuis la derniere sauvegarde
+        String save_dir_path = getClass().getResource("").getPath();
+        save_dir_path = save_dir_path + "../../savedirectory/save.txt";
+
+        FileInputStream fileInputStream = new FileInputStream(save_dir_path);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        save_path = (String) objectInputStream.readObject();
+        objectInputStream.close();
+        System.out.println(save_path);
+    }
 
     // GETTERS
     public String getNom_album() {return this.nom_album;}

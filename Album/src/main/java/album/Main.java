@@ -18,7 +18,6 @@ public class Main extends Application {
         Album album = new Album();
 
         // creation observateurs
-
         Root root = new Root(album);
         DroiteInventairePhotos droiteinventairephotos = new DroiteInventairePhotos(album);
         DoublePage doublepage = new DoublePage(album);
@@ -39,8 +38,6 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("Album Photo");
         stage.setScene(scene);
-
-        album.restore();
 
         stage.show();
     }
