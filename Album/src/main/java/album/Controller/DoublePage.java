@@ -22,27 +22,27 @@ public class DoublePage implements Observateur {
     Album album;
 
     @FXML
-    VBox vbox1;
+    protected VBox vbox1;
     @FXML
-    VBox vbox2;
+    protected VBox vbox2;
 
     @FXML
-    Button title1;
-    TextField tf1 = new TextField();
+    protected Button title1;
+    protected TextField tf1 = new TextField();
 
     @FXML
-    Pane pane1;
+    protected Pane pane1;
     @FXML
-    ImageView imageview1;
+    protected ImageView imageview1;
 
     @FXML
-    Button title2;
-    TextField tf2 = new TextField();
+    protected Button title2;
+    protected TextField tf2 = new TextField();
 
     @FXML
-    Pane pane2;
+    protected Pane pane2;
     @FXML
-    ImageView imageview2;
+    protected ImageView imageview2;
 
     public DoublePage(Album album) {
         this.album = album;

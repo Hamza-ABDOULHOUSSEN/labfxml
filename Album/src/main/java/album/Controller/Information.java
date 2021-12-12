@@ -10,10 +10,10 @@ public class Information implements Observateur {
     Album album;
 
     @FXML
-    Label nom_album_label;
+    protected Label nom_album_label;
 
     @FXML
-    Label nb_page_label;
+    protected Label nb_page_label;
 
     public Information(Album album) {
         this.album = album;

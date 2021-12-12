@@ -15,7 +15,7 @@ public class AskAlbumNamePane implements Observateur {
     Album album;
 
     @FXML
-    private TextField input_name;
+    protected TextField input_name;
 
     public AskAlbumNamePane(Album album) {
         this.album = album;

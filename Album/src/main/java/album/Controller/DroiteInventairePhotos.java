@@ -23,10 +23,10 @@ import java.util.Arrays;
 public class DroiteInventairePhotos implements Observateur {
 
     Album album;
-    ArrayList<String> extensions = new ArrayList<>(Arrays.asList("gif", "jpg", "png", "jpeg", "tiff"));
+    protected ArrayList<String> extensions = new ArrayList<>(Arrays.asList("gif", "jpg", "png", "jpeg", "tiff"));
 
     // donnée models
-    ArrayList<ImageView> liste_photos = new ArrayList<>();
+    protected ArrayList<ImageView> liste_photos = new ArrayList<>();
 
     @FXML
     private GridPane inventaire_photos;
@@ -34,10 +34,10 @@ public class DroiteInventairePhotos implements Observateur {
     @FXML
     protected void AddPhotoClick() {
         File dossier = new DirectoryChooser().showDialog(new Stage());
+
+        if (dossier != null) {
         File[] fichiers = dossier.listFiles();
         Arrays.sort(fichiers);
-
-        if (fichiers != null) {
             for (File f: fichiers) {
                 String name = f.getName();
                 String ext = name.substring(name.lastIndexOf(".")+1);

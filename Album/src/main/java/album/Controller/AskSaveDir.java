@@ -15,7 +15,7 @@ public class AskSaveDir implements Observateur {
 
     Album album;
 
-    int SaveOrRestore;      // 0 : Save  1 : Restore
+    protected int SaveOrRestore;      // 0 : Save  1 : Restore
 
     @FXML
     private TextField input_name;
@@ -62,7 +62,10 @@ public class AskSaveDir implements Observateur {
     @FXML
     protected void searchdir() throws IOException, ClassNotFoundException {
         File dossier = new DirectoryChooser().showDialog(new Stage());
-        String savepath = dossier.getPath();
+        String savepath = "";
+        if (dossier != null) {
+            savepath = dossier.getPath();
+        }
         input_name.setText(savepath);
         CancelClick();
         Boolean filefound;

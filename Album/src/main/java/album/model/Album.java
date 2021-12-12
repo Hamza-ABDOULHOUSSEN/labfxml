@@ -15,17 +15,17 @@ public class Album extends SujetObserve {
     // Liste: observateurs = {root , savepane, askalbumnamepane, asksavedir, droiteinventairephotos, doublepage, information, panneaucontrole}
     // pour avoir acces aux observateurs et ne pas tous les modifier à chaque fois
 
-    String nom_album = "";
+    private String nom_album = "";
 
-    String save_path = "";
+    private String save_path = "";
 
-    int nb_double_page = 2;
-    int double_page_courante = 1;
+    private int nb_double_page = 2;
+    private int double_page_courante = 1;
 
-    Hashtable<Integer, String> doublepage_titre = new Hashtable<>();
-    Hashtable<Integer, String> doublepage_image = new Hashtable<>();
+    private Hashtable<Integer, String> doublepage_titre = new Hashtable<>();
+    private Hashtable<Integer, String> doublepage_image = new Hashtable<>();
 
-    ArrayList<String> grid_inventory = new ArrayList<>();
+    private ArrayList<String> grid_inventory = new ArrayList<>();
     
     public Album() {}
 

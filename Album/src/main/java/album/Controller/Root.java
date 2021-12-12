@@ -20,9 +20,9 @@ public class Root implements Observateur {
     @FXML
     public StackPane root;
 
-    Stage stageAsk = new Stage();
-    Stage stageSave = new Stage();
-    Stage stageSaveDir = new Stage();
+    protected Stage stageAsk = new Stage();
+    protected Stage stageSave = new Stage();
+    protected Stage stageSaveDir = new Stage();
 
     public Root(Album album) throws IOException {
         this.album = album;
