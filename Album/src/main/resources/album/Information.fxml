@@ -19,15 +19,19 @@
 
 <VBox prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="album.Controller.Information">
    <children>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="446.0" text="page 1-2 sur 2" fx:id="nb_page_label">
+
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="446.0" style="-fx-font-size: 2em;" text="page 1-2 sur 2" fx:id="nb_page_label">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label prefHeight="82.0" prefWidth="531.0" text="Nom de l'album :" fx:id="nom_album_label">
+      <Label prefHeight="82.0" prefWidth="531.0" style="-fx-font-size: 2em;" text="Nom de l'album :" fx:id="nom_album_label">
          <font>
             <Font size="16.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
       </Label>
    </children>
 </VBox>
