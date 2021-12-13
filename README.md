@@ -44,7 +44,7 @@ Lorsque l'Album est quitté, si aucune sauvegarde n'est chargé ou que l'Album n
 Le ficheir `launch_jar.sh` contient la commande permettant d'éxécuter le fichier jar
 Pour lander le jar, il faut éxécuter la commande
 ```
-launch_jar.sh
+./launch_jar.sh
 ```
 
 ## Modele et diagramme
